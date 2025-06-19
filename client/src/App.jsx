@@ -8,9 +8,7 @@ const App = () => {
   return (
     <div className="bg-[url('./src/assets/bgImage.svg')] bg-contain">
       <Routes>
-        <Route path="/" element={<HomePage />}>
-          HomePage
-        </Route>
+        <Route path="/" element={<HomePage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/profile" element={<ProfilePage />}></Route>
       </Routes>

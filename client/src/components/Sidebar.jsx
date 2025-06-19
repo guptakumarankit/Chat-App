@@ -6,11 +6,11 @@ const SideBar = ({ selectedUser, setselectedUser }) => {
   const navigate = useNavigate();
   return (
     <div
-      className={`bg-[#8185B2]/10 h-full p-5 rounded-r-xl overflow-y-scroll text-white ${
+      className={`bg-[#8185B2]/10 h-full p-5 rounded-l-xl  overflow-scroll text-white ${
         selectedUser ? "max-md:hidden" : ""
       }`}
     >
-      <div className="pb-5">
+      <div className="max-h-[25%] pb-5">
         <div className="flex justify-between items-center">
           <img src={assets.logo} alt="logo" className="max-h-10 " />
           <div className="relative py-2 group">
@@ -44,7 +44,7 @@ const SideBar = ({ selectedUser, setselectedUser }) => {
         </div>
       </div>
 
-      <div className="flex flex-col">
+      <div className="max-h-[80%] flex flex-col overflow-scroll">
         {userDummyData.map((user, index) => (
           <div
             onClick={() => {

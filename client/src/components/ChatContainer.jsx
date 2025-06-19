@@ -14,7 +14,7 @@ const ChatContainer = ({ selectedUser, setSelectedUser }) => {
   return selectedUser ? (
     <div className="h-full overflow-scroll relative backdrop-blur-lg">
       {/* -------- Header ----------- */}
-      <div className="flex items-center gap-3 py-3 mx-4 border-b border-stone-500">
+      <div className="flex items-center gap-3 py-3 mx-4 border-b border-stone-500 max-h-[10%]">
         <img
           src={assets.profile_martin}
           alt="profile"
@@ -33,7 +33,7 @@ const ChatContainer = ({ selectedUser, setSelectedUser }) => {
         <img src={assets.help_icon} alt="" className="max-md:hidden max-w-5" />
       </div>
       {/* -------- chat area ------- */}
-      <div className="flex flex-col h-[calc(100%-120)] overflow-y-scroll p-3 pb-6">
+      <div className="max-h-[80%] flex flex-col overflow-y-scroll p-3 pb-6">
         {messagesDummyData.map((msg, index) => (
           <div
             key={index}
@@ -78,7 +78,7 @@ const ChatContainer = ({ selectedUser, setSelectedUser }) => {
       </div>
 
       {/* ------- bottom area --------- */}
-      <div className="absol ute bottom-0 left-0 right-0 flex  items-center gap-3 p-3">
+      <div className="max-h-[10%] absolute left-0 right-0 flex  items-center gap-3 p-3">
         <div className="flex-1 flex items-center bg-gray-100/12 px-3 rounded-full">
           <input
             type="text"
