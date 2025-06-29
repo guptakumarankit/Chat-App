@@ -7,6 +7,7 @@ import userRouter from "./routes/userRoutes.js";
 import messageRouter from "./routes/messageRoutes.js";
 import { Server } from 'socket.io';
 
+
 // create Express app and HTTP Server...
 const app = express();
 const server = http.createServer(app);
@@ -37,6 +38,7 @@ io.on("connection" , (socket)=>{
         io.emit("getOnlineUsers" , Object.keys(userSocketMap))
     })
 })
+
 // Middleware setUp
 app.use(express.json({limit : "4mb"}));
 app.use(cors());
