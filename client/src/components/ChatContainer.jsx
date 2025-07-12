@@ -6,13 +6,14 @@ import { ChatContext } from "../../context/ChatContext";
 import toast from "react-hot-toast";
 
 const ChatContainer = () => {
-  const { messages , selectedUser , setSelectedUser , sendMessage , getMessages} = useContext(ChatContext);
-  const {authUser , onlineUsers} = useContext(AuthContext);
-
+  const { messages , selectedUser , setSelectedUser , sendMessage , getMessages , viewProfile , setViewProfile } = useContext(ChatContext);
+  const { authUser , onlineUsers } = useContext(AuthContext);
+  
   const scrollEnd = useRef();
   const [input , setInput] = useState('');
   
-  // handle sending a message
+
+  // handle sending a message...
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if(input.trim() === "") return null;
@@ -28,10 +29,16 @@ const ChatContainer = () => {
         return;
       }
 
+
       const reader = new FileReader();
-      reader.onloadend = async ()=>{
-        await sendMessage({image: reader.result});
-        e.target.value = "";
+      try {
+        reader.onloadend = async ()=>{
+          await sendMessage({image: reader.result});
+          e.target.value = "";
+        }
+      } catch (error) {
+        console.error("Error sending image:", error);
+        toast.error("Failed to send image");
       }
       reader.readAsDataURL(file);
   }
@@ -68,7 +75,9 @@ const ChatContainer = () => {
           alt="arrow_icon"
           className="md:hidden max-w-7"
         />
-        <img src={assets.help_icon} alt="" className="max-md:hidden max-w-5" />
+        {!viewProfile &&
+          <img onClick={(e) => setViewProfile(!viewProfile)}
+         src={assets.help_icon} alt="" className="max-md:hidden max-w-5" />}
       </div>
       {/* -------- chat area ------- */}
       <div className="max-h-[80%] flex flex-col overflow-y-scroll p-3 pb-6">

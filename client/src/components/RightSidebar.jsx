@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 const RightSidebar = () => {
 
-  const {selectedUser , messages} = useContext(ChatContext);
+  const {selectedUser , messages , viewProfile , setViewProfile} = useContext(ChatContext);
   const {logout , onlineUsers} = useContext(AuthContext);
   const [msgImages , setmsgImages] = useState([]);
 
@@ -23,6 +23,9 @@ const RightSidebar = () => {
           selectedUser ? "max-md:hidden" : ""
         }`}
       >
+        <img onClick={(e) => setViewProfile(!viewProfile)}
+        src={assets.help_icon} alt="" className="max-md:hidden max-w-5 absolute right-4 top-4" />
+
         <div className="pt-16 flex flex-col items-center gap-2 text-xs font-light mx-auto">
           <img
             src={selectedUser?.profilePic || assets.avatar_icon}

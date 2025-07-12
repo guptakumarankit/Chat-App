@@ -9,7 +9,8 @@ export const ChatProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [unseenMessages, setUnseenMessages] = useState({});
-  
+  const [viewProfile , setViewProfile] = useState(false);
+
   // console.log("messagesContext ->" , messages);
 
   const { socket , axios } = useContext(AuthContext);
@@ -40,7 +41,6 @@ export const ChatProvider = ({ children }) => {
   };
 
   // function to send message to selected user
-
   const sendMessage = async (messageData)=>{
         try {
             const {data} = await axios.post(`/api/messages/send/${selectedUser._id}` , messageData);
@@ -84,7 +84,7 @@ export const ChatProvider = ({ children }) => {
   } , [socket , selectedUser]);
 
   const value = {
-    messages , users , selectedUser , getUsers , getMessages , sendMessage , setSelectedUser , unseenMessages , setUnseenMessages
+    messages , users , selectedUser , getUsers , getMessages , sendMessage , setSelectedUser , unseenMessages , setUnseenMessages , viewProfile , setViewProfile 
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
